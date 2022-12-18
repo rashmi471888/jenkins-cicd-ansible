@@ -2,7 +2,6 @@
 - name: Playing with Ansible and Git
   hosts: localhost
   connection: local
-  gather_facts: no
   become: yes
   become_user: root
   tasks:
