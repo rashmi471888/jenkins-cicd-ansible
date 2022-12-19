@@ -3,7 +3,7 @@
   hosts: localhost
   connection: local
   become: yes
-  become_user: jenkins
+  become_user: root
   tasks:
     - name: just execute a ls -lrt command
       shell: echo "hello world" >> abc
