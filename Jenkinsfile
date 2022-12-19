@@ -21,10 +21,12 @@ pipeline {
       stage('Check Ansible version') {
            steps {
                sh 'ansible --version'
+               sh 'python --version'
             }
         }
       stage('Ansible Deploy') {
            steps {
+               sh 'ls -ltrh'
                sh 'ansible-playbook -i localhost myfirstplaybook.yml'
             }
         }
