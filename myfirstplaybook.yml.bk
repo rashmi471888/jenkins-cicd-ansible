@@ -2,17 +2,19 @@
 - name: Playing with Ansible and Git
   hosts: localhost
   connection: local
-  become: yes
-  become_user: root
+  become: no
+  become_user: jenkins
   tasks:
     - name: just execute a ls -lrt command
-      shell: echo "hello world" >> abc
-        #    register: output
+      shell: echo "hello world" > abc
+      register: output
   tasks:
     - name: Stop Apache tomcat service
-      shell: service tomcat stop >> stop
+      shell: /usr/share/tomcat/bin/shutdown.sh > stop
+  tasks:
     - name: Remove the existing war file
       shell: rm -rf /usr/share/tomcat/webapps/hello-world-maven.war 
+  tasks:
     - name: Copy war files to tomcat
       copy:
         src: /var/lib/jenkins/workspace/Jenkins-CICD-Mygithub/target/hello-world-maven.war
@@ -20,5 +22,6 @@
         owner: tomcat
         group: tomcat
         mode: 0644
+  tasks:
     - name: Start the Apache tomcat service
-      shell: service tomcat start >> start 
+      shell: /usr/share/tomcat/bin/startup.sh 
