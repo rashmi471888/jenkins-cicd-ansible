@@ -5,12 +5,10 @@
   become: yes
   become_user: root
   tasks:
-    - name: just execute a ls -lrt command
-      shell: echo "hello world" >> abc
-        #    register: output
-  tasks:
     - name: Stop Apache tomcat service
-      shell: service tomcat stop >> stop
+      service: 
+        name: tomcat
+        state: stopped
     - name: Remove the existing war file
       shell: rm -rf /usr/share/tomcat/webapps/hello-world-maven.war 
     - name: Copy war files to tomcat
@@ -21,4 +19,6 @@
         group: tomcat
         mode: 0644
     - name: Start the Apache tomcat service
-      shell: service tomcat start >> start 
+      service: 
+        name: tomcat
+        state: started
