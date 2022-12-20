@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent ANSIBLE
     tools { 
         maven 'mymaven' 
         jdk 'myjdk' 
@@ -27,7 +27,7 @@ pipeline {
       stage('Ansible Deploy') {
            steps {
                sh 'ls -ltrh'
-               sh 'ansible-playbook -i localhost myfirstplaybook.yml'
+               sh 'ansible-playbook -i localhost myfirstfile.yml'
             }
         }
     }
