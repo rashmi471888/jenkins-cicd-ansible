@@ -31,7 +31,7 @@ pipeline {
                 }
            steps {
                sh 'ls -ltrh'
-               sh 'ansible-playbook -i localhost myfirstfile.yml'
+               sh 'ansible-playbook -i localhost myfirstplaybook.yml'
             }
         }
     }
