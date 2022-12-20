@@ -1,5 +1,5 @@
 pipeline {
-    agent ANSIBLE
+    agent any
     tools { 
         maven 'mymaven' 
         jdk 'myjdk' 
@@ -19,12 +19,20 @@ pipeline {
             }
         }
       stage('Check Ansible version') {
-           steps {
+          agent {label 'ANSIBLE'}
+                options {
+                timeout(time: 1, unit: 'HOURS')
+                }
+          steps {
                sh 'ansible --version'
                sh 'python --version'
             }
         }
       stage('Ansible Deploy') {
+          agent {label 'ANSIBLE'}
+                options {
+                timeout(time: 1, unit: 'HOURS')
+                }
            steps {
                sh 'ls -ltrh'
                sh 'ansible-playbook -i localhost myfirstfile.yml'
