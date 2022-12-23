@@ -1,7 +1,9 @@
 pipeline {
-    agent any
-     
-    stages {
+    agent {label 'ANSIBLE'}
+           options {
+           timeout(time: 1, unit: 'HOURS')
+          }
+     stages {
       stage('checkout') {
            steps {
              
