@@ -7,7 +7,7 @@
   tasks:
     - name: Copy war files to tomcat
       copy:
-        src: /var/lib/jenkins/workspace/ansible/target/hello-world-maven.war
+        src: /home/ansadmin/remot_root/workspace/ansible/target/hello-world-maven.war
         dest: /opt/apache-tomcat-8.5.84/webapps
         
         owner: tomcat
