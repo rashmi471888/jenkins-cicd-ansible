@@ -1,14 +1,25 @@
 ---
-- hosts: all
-  become: true
+- name: Playing with Ansible and Git
+  hosts: localhost
+  connection: local
+  become: yes
+  become_user: root
   tasks:
-    - name: Install the latest version of Apache
-      ansible.builtin.yum:
-        name: httpd
-        state: latest
-
-    - name: Start service httpd, if not started
-      ansible.builtin.service:
-        name: httpd
+    - name: Stop Apache tomcat service
+      service: 
+        name: tomcat
+        state: stopped
+    - name: Remove the existing war file
+      shell: rm -rf /usr/share/tomcat/webapps/hello-world-maven.war 
+    - name: Copy war files to tomcat
+      copy:
+        src: /var/lib/jenkins/workspace/ansible/target/hello-world-maven.war
+        dest: /opt/apache-tomcat-8.5.84/webapps
+        owner: tomcat
+        group: tomcat
+        mode: 0644
+    - name: Start the Apache tomcat service
+      service: 
+        name: tomcat
         state: started
 
