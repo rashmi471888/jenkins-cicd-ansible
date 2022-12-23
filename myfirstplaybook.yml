@@ -1,6 +1,6 @@
 ---
 - name: Playing with Ansible and Git
-  hosts: localhost
+  hosts: all
   connection: local
   become: yes
   become_user: root
