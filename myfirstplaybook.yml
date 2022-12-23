@@ -3,14 +3,8 @@
   hosts: all
   connection: local
   become: yes
-  become_user: root
+  become_user: ansadmin
   tasks:
-    - name: Stop Apache tomcat service
-      service: 
-        name: tomcat
-        state: stopped
-    - name: Remove the existing war file
-      shell: rm -rf /usr/share/tomcat/webapps/hello-world-maven.war 
     - name: Copy war files to tomcat
       copy:
         src: /var/lib/jenkins/workspace/ansible/target/hello-world-maven.war
