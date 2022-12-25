@@ -28,10 +28,6 @@ pipeline {
                 options {
                 timeout(time: 1, unit: 'HOURS')
                 } 
-          sshagent(['app-server']) {
-            sh 'scp -o StrictHostKeyChecking=no target/*.war ec2-52-90-61-49.compute-1.amazonaws.com:/opt/apache-tomcat-8.5.38/webapps/'
-        }
-          
            steps {
                sh 'ls -ltrh'
                sh 'ansible-playbook -i localhost myfirstplaybook.yml'
