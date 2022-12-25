@@ -1,7 +1,7 @@
 ---
 - name: Playing with Ansible and Git
   hosts: all
-  connection: local
+  connection: ansadmin
   become: yes
   become_user: ansadmin
   tasks:
